@@ -8,8 +8,8 @@ export default function App() {
   return (
     <Router>
       <NavigationBar />
-      <Home/>
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/Menu" element={<Menupage />} />
       </Routes>
     </Router>
