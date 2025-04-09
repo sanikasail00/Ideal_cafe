@@ -1,7 +1,7 @@
 import React from "react";
 import { Carousel, Card, Container, Row, Col } from "react-bootstrap";
 import images from "../assets/images/choco.jpg"
-// Sample data for carousel, dishes, and testimonials
+
 const carouselImages = [
   { src: {images}, caption: "Award-Winning Flavors" },
   { src: "/images/icecream2.jpg", caption: "Delicious & Creamy" },
@@ -22,7 +22,6 @@ const testimonials = [
 const Home = () => {
   return (
     <Container fluid className="p-0">
-      {/* Hero Banner - Carousel (Moved Down with margin-top) */}
       <Carousel className="mt-5">
         {carouselImages.map((item, index) => (
           <Carousel.Item key={index}>
@@ -34,7 +33,6 @@ const Home = () => {
         ))}
       </Carousel>
 
-      {/* Popular Dishes */}
       <Container className="mt-5">
         <h2 className="text-center mb-4">Popular Dishes</h2>
         <Row>
@@ -52,7 +50,7 @@ const Home = () => {
         </Row>
       </Container>
 
-      {/* Customer Testimonials */}
+
       <Container className="mt-5 bg-light p-4">
         <h2 className="text-center mb-4">What Our Customers Say</h2>
         <Row>
@@ -70,7 +68,7 @@ const Home = () => {
         </Row>
       </Container>
 
-      {/* Exclusive Offers */}
+      
       <Container className="mt-5 text-center bg-warning p-4">
         <h2>Exclusive Offers</h2>
         <p>Happy Hours: Buy 1 Get 1 Free (4 PM - 6 PM)!</p>

@@ -3,11 +3,9 @@ import {
   Container,
   Navbar,
   Form,
-  NavDropdown,
-  Button,
   Nav,
 } from "react-bootstrap";
-import { Link } from "react-router-dom"; // ✅ Add this
+import { Link } from "react-router-dom"; 
 import logo from "../assets/logo/ideal.png";
 
 export default function NavigationBar() {

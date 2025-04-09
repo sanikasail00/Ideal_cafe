@@ -1,13 +1,19 @@
+import React from 'react';
+import NavigationBar from './components/NavigationBar';
+import Menupage from './components/Menupage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from "./components/Home"
 
-import React from 'react'
-import NavigationBar from './components/NavigationBar'
-import Home from './components/Home'
 export default function App() {
   return (
-    <div>
-      <NavigationBar/>
+    <Router>
+      <NavigationBar />
       <Home/>
-    </div>
-  )
+      <Routes>
+        <Route path="/Menu" element={<Menupage />} />
+      </Routes>
+    </Router>
+  );
+
 }
 
