@@ -7,6 +7,7 @@ import {
   Button,
   Nav,
 } from "react-bootstrap";
+import logo from "../assets/logo/ideal.png"
 
 
 export default function NavigationBar() {
@@ -15,7 +16,7 @@ export default function NavigationBar() {
       <Navbar expand="lg" className="bg-dark">
         <Container>
         <Navbar.Brand>
-            <img src="https://pabbasidealcafe.in/assets/config/logo.png" alt="logo" width="100" />
+            <img src={logo} alt="logo" width="100" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
