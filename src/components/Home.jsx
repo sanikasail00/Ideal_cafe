@@ -48,7 +48,6 @@ const Home = () => {
         ))}
       </Carousel>
 
-      {/* Popular Dishes */}
       <Container className="mt-5">
         <h2 className="text-center mb-4">Popular Dishes</h2>
         <Row>
@@ -66,7 +65,7 @@ const Home = () => {
         </Row>
       </Container>
 
-      {/* Customer Testimonials */}
+
       <Container className="mt-5 bg-light p-4">
         <h2 className="text-center mb-4">What Our Customers Say</h2>
         <Row>
@@ -84,7 +83,7 @@ const Home = () => {
         </Row>
       </Container>
 
-      {/* Exclusive Offers */}
+      
       <Container className="mt-5 text-center bg-warning p-4">
         <h2>Exclusive Offers</h2>
         <p>Happy Hours: Buy 1 Get 1 Free (4 PM - 6 PM)!</p>

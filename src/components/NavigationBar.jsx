@@ -3,19 +3,18 @@ import {
   Container,
   Navbar,
   Form,
-  NavDropdown,
-  Button,
   Nav,
 } from "react-bootstrap";
-
+import { Link } from "react-router-dom"; 
+import logo from "../assets/logo/ideal.png";
 
 export default function NavigationBar() {
   return (
     <div>
       <Navbar expand="lg" className="bg-dark">
         <Container>
-        <Navbar.Brand>
-            <img src="https://pabbasidealcafe.in/assets/config/logo.png" alt="logo" width="100" />
+          <Navbar.Brand>
+            <img src={logo} alt="logo" width="100" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -28,12 +27,12 @@ export default function NavigationBar() {
               />
             </Form>
             <Nav className="d-flex flex-wrap">
-               <Nav.Link className="text-white" >Home</Nav.Link>
-               <Nav.Link className="text-white">Menu</Nav.Link>
-               <Nav.Link className="text-white" >Offers</Nav.Link>
-               <Nav.Link className="text-white">Location</Nav.Link>
-               <Nav.Link className="text-white">Contact Us</Nav.Link>
-               <Nav.Link className="text-white">Sign In</Nav.Link>
+              <Nav.Link as={Link} to="/" className="text-white">Home</Nav.Link>
+              <Nav.Link as={Link} to="/Menu" className="text-white">Menu</Nav.Link>
+              <Nav.Link className="text-white">Offers</Nav.Link>
+              <Nav.Link className="text-white">Location</Nav.Link>
+              <Nav.Link className="text-white">Contact Us</Nav.Link>
+              <Nav.Link className="text-white">Sign In</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
