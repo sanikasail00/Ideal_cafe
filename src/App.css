@@ -40,3 +40,42 @@
 .read-the-docs {
   color: #888;
 }
+nav {
+  display: flex;
+  justify-content: space-between; /* Keeps logo and menu aligned */
+  align-items: center;
+  background-color: #1a1a1a;
+  padding: 10px 20px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+}
