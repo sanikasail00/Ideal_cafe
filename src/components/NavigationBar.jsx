@@ -31,7 +31,7 @@ export default function NavigationBar() {
               <Nav.Link as={Link} to="/Menu" className="text-white">Menu</Nav.Link>
               <Nav.Link className="text-white">Offers</Nav.Link>
               <Nav.Link className="text-white">Location</Nav.Link>
-              <Nav.Link className="text-white">Contact Us</Nav.Link>
+              <Nav.Link as={Link} to="/Contact Us" className="text-white">Contact Us</Nav.Link>
               <Nav.Link className="text-white">Sign In</Nav.Link>
             </Nav>
           </Navbar.Collapse>
