@@ -1,17 +1,31 @@
 import React from "react";
 import { Carousel, Card, Container, Row, Col } from "react-bootstrap";
-import images from "../assets/images/choco.jpg"
+import "../App.css";
 
+// ✅ Correctly Import Images
+import choco from "../assets/images/choco.jpg";
+import gudbud from "../assets/images/gudbud.jpg";
+import mango from "../assets/images/mango.jpg";
+import munchoori from "../assets/images/munchoori.jpg";  // Correct path
+
+import icecream from "../assets/images/icecream.jpg";
+
+import cafe from "../assets/images/cafe.jpg";
+// import choclatedad from "../assets/images/choclatedad.jpg";
+
+
+
+// Sample data for carousel, dishes, and testimonials
 const carouselImages = [
-  { src: {images}, caption: "Award-Winning Flavors" },
-  { src: "/images/icecream2.jpg", caption: "Delicious & Creamy" },
-  { src: "/images/icecream3.jpg", caption: "Refreshing & Tasty" },
+  { src: munchoori, caption: "Award-Winning Flavors" },
+  { src: icecream, caption: "Delicious & Creamy" },
+  { src: cafe, caption: "Refreshing & Tasty" },
 ];
 
 const popularDishes = [
-  { name: "Gadbad Ice Cream", img: "/images/gadbad.jpg", desc: "A delightful mix of flavors and textures!" },
-  { name: "Chocolate Fudge", img: "/images/choclate_fudge.jpg", desc: "Rich and creamy chocolate delight!" },
-  { name: "Mango Delight", img: "/images/mango.jpg", desc: "Fresh mango ice cream with a smooth texture!" },
+  { name: "Gadbad Ice Cream", img: gudbud, desc: "A delightful mix of flavors and textures!" },
+  { name: "Chocolate Fudge", img: choco, desc: "Rich and creamy chocolate delight!" },
+  { name: "Mango Delight", img: mango, desc: "Fresh mango ice cream with a smooth texture!" },
 ];
 
 const testimonials = [
@@ -22,6 +36,7 @@ const testimonials = [
 const Home = () => {
   return (
     <Container fluid className="p-0">
+      {/* Hero Banner - Carousel */}
       <Carousel className="mt-5">
         {carouselImages.map((item, index) => (
           <Carousel.Item key={index}>
