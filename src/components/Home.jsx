@@ -12,6 +12,7 @@ import icecream from "../assets/images/icecream.jpg";
 
 import cafe from "../assets/images/cafe.jpg";
 // import choclatedad from "../assets/images/choclatedad.jpg";
+import IceCreamOfTheDay from './Icecreamofday';
 
 
 
@@ -47,7 +48,7 @@ const Home = () => {
           </Carousel.Item>
         ))}
       </Carousel>
-
+      <IceCreamOfTheDay/>
       <Container className="mt-5">
         <h2 className="text-center mb-4">Popular Dishes</h2>
         <Row>
