@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Card, Button, Form } from "react-bootstrap"
-import Belgian from "../assets/Menu/Belgian/Belgian.jpg"
-import Caramel from "../assets/Menu/Caramel/Caramel.jpg"
-import Mocha from "../assets/Menu/Mocha/Mocha.jpg"
-import Paneer from "../assets/Menu/Paneer/Paneer.jpg"
-import Vanilla from "../assets/Menu/Vanilla/vanilla.jpg"
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import StarRating from "../components/StarRating";
+import Belgian from "../assets/Menu/Belgian/Belgian.jpg";
+import Caramel from "../assets/Menu/Caramel/Caramel.jpg";
+import Mocha from "../assets/Menu/Mocha/Mocha.jpg";
+import Paneer from "../assets/Menu/Paneer/Paneer.jpg";
+import Vanilla from "../assets/Menu/Vanilla/vanilla.jpg";
 import CheesyNacho from "../assets/Menu/CheesyNacho/cheesynacho.jpg";
-import ChocoLava from "../assets/Menu/ChocoLava/chocolava.jpg"
-import ColdBrewKick from "../assets/Menu/ColdBrewKick/coldbrewkick.jpg"
-
+import ChocoLava from "../assets/Menu/ChocoLava/chocolava.jpg";
+import ColdBrewKick from "../assets/Menu/ColdBrewKick/coldbrewkick.jpg";
 
 const menuData = [
   {
     id: 1,
     name: "Belgian Bliss",
     category: "Ice Creams",
-     image: Belgian,
+    image: Belgian,
     description: "Decadent Belgian chocolate ice cream with dark fudge swirls.",
     price: 120,
     rating: 4.8,
@@ -37,7 +37,7 @@ const menuData = [
     id: 3,
     name: "Mocha Frappe",
     category: "Beverages",
-    image:Mocha,
+    image: Mocha,
     description: "Iced coffee blended with mocha and whipped cream.",
     price: 80,
     rating: 4.5,
@@ -48,7 +48,7 @@ const menuData = [
     id: 4,
     name: "Paneer Tikka Roll",
     category: "Snacks",
-    image:Paneer,
+    image: Paneer,
     description: "Spicy paneer tikka rolled in a soft tortilla wrap.",
     price: 90,
     rating: 4.6,
@@ -67,22 +67,23 @@ const menuData = [
     isNew: true,
   },
   {
-  id: 6,
-  name: "Cheesy Nacho",
-  category: "Snacks",
-  image: CheesyNacho,
-  description: "Crispy nachos topped with melted cheese and spicy jalapeños.",
-  price: 110,
-  rating: 4.3,
-  popularity: 78,
-  isNew: false,
+    id: 6,
+    name: "Cheesy Nacho",
+    category: "Snacks",
+    image: CheesyNacho,
+    description: "Crispy nachos topped with melted cheese and spicy jalapeños.",
+    price: 110,
+    rating: 4.3,
+    popularity: 78,
+    isNew: false,
   },
   {
     id: 7,
     name: "Choco Lava Cake",
     category: "Desserts",
     image: ChocoLava,
-    description: "Warm chocolate cake with a gooey molten center, served fresh.",
+    description:
+      "Warm chocolate cake with a gooey molten center, served fresh.",
     price: 130,
     rating: 4.9,
     popularity: 92,
@@ -104,9 +105,34 @@ const menuData = [
 export default function CafeMenu() {
   const [filter, setFilter] = useState("All");
   const [sortBy, setSortBy] = useState("");
+  const [reviews, setReviews] = useState({});
+  const [userPreferences, setUserPreferences] = useState([]); // New state to track preferences
+  const [recommendedItems, setRecommendedItems] = useState([]); // State to hold recommended items
 
   const handleFilter = (e) => setFilter(e.target.value);
   const handleSort = (e) => setSortBy(e.target.value);
+
+  // Update recommended items based on user preferences
+  useEffect(() => {
+    if (userPreferences.length > 0) {
+      const recommendations = menuData.filter((item) =>
+        userPreferences.includes(item.category)
+      );
+      setRecommendedItems(recommendations);
+    }
+  }, [userPreferences]);
+
+  const handleReviewSubmit = (id, rating, text) => {
+    setReviews((prev) => ({
+      ...prev,
+      [id]: [...(prev[id] || []), { rating, text }],
+    }));
+  };
+
+  const handlePreference = (category) => {
+    // Add the selected category to the preferences list
+    setUserPreferences((prev) => [...new Set([...prev, category])]);
+  };
 
   const filteredMenu = menuData.filter((item) => {
     if (filter === "Only Ice Creams") return item.category === "Ice Creams";
@@ -115,7 +141,6 @@ export default function CafeMenu() {
     if (filter === "All") return true;
     return item.category === filter;
   });
-  
 
   const sortedMenu = [...filteredMenu].sort((a, b) => {
     if (sortBy === "price") return a.price - b.price;
@@ -137,8 +162,8 @@ export default function CafeMenu() {
             <option value="New Arrivals">New Arrivals</option>
             <option value="Ice Creams">Ice Creams</option>
             <option value="Desserts">Desserts</option>
-            <option value="Beverages"> Beverages</option>
-            <option value="Snacks"> Snacks</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Snacks">Snacks</option>
           </Form.Select>
         </Col>
         <Col md={6}>
@@ -149,6 +174,49 @@ export default function CafeMenu() {
             <option value="rating">Rating</option>
           </Form.Select>
         </Col>
+      </Row>
+
+      <h4>Recommended Based on Your Preferences:</h4>
+      <Row>
+        {recommendedItems.length > 0 ? (
+          recommendedItems.map((item) => (
+            <Col key={item.id} md={3} className="mb-4">
+              <Card className="h-100 shadow-sm">
+                <Card.Img
+                  src={item.image}
+                  alt={item.name}
+                  style={{ height: "200px", objectFit: "cover" }}
+                />
+                <Card.Body className="d-flex flex-column justify-content-between">
+                  <Card.Title>{item.name}</Card.Title>
+                  <Card.Text>{item.description}</Card.Text>
+                  <Card.Text>
+                    <strong>₹{item.price}</strong>
+                  </Card.Text>
+                  <Button variant="primary" className="mt-3">
+                    Add to Cart
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))
+        ) : (
+          <p>No recommendations available based on your preferences.</p>
+        )}
+      </Row>
+
+      <h4>Select Your Favorite Categories:</h4>
+      <Row>
+        {["Ice Creams", "Desserts", "Beverages", "Snacks"].map((category) => (
+          <Col key={category} md={3} className="mb-4">
+            <Button
+              variant="outline-primary"
+              onClick={() => handlePreference(category)}
+            >
+              {category}
+            </Button>
+          </Col>
+        ))}
       </Row>
 
       <Row>
@@ -165,10 +233,95 @@ export default function CafeMenu() {
                   <Card.Title>{item.name}</Card.Title>
                   <Card.Text>{item.description}</Card.Text>
                   <Card.Text>
-                    <strong>₹{item.price}</strong> | ⭐ {item.rating}
+                    <strong>₹{item.price}</strong>
                   </Card.Text>
+
+                  <Form.Group className="mb-2">
+                    <Form.Label style={{ fontSize: "0.9em" }}>
+                      Choose Your Flavor:
+                    </Form.Label>
+                    <Form.Select name={`flavor-${item.id}`} className="mb-1">
+                      <option value="">Select a flavor</option>
+                      {[
+                        "Chocolate",
+                        "Vanilla",
+                        "Caramel",
+                        "Coffee",
+                        "Spicy",
+                        "Cheesy",
+                      ].map((flavor) => (
+                        <option key={flavor} value={flavor}>
+                          {flavor}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
+
+                  {reviews[item.id] && reviews[item.id].length > 0 ? (
+                    <>
+                      <Card.Text className="mb-1">
+                        <strong>Users Rated:</strong>{" "}
+                        <StarRating
+                          rating={Math.round(
+                            reviews[item.id].reduce(
+                              (sum, r) => sum + r.rating,
+                              0
+                            ) / reviews[item.id].length
+                          )}
+                        />
+                        <span style={{ fontSize: "0.85em", color: "#555" }}>
+                          ({reviews[item.id].length} review
+                          {reviews[item.id].length > 1 ? "s" : ""})
+                        </span>
+                      </Card.Text>
+                    </>
+                  ) : (
+                    <Card.Text>
+                      <strong>Total Rating:</strong> ⭐ {item.rating}
+                    </Card.Text>
+                  )}
+
+                  <Form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const rating = parseInt(e.target.rating.value);
+                      const text = e.target.review.value;
+                      handleReviewSubmit(item.id, rating, text);
+                      e.target.reset();
+                    }}
+                  >
+                    <Form.Group className="mt-2">
+                      <Form.Label style={{ fontSize: "0.9em" }}>
+                        Rate this:
+                      </Form.Label>
+                      <Form.Select name="rating" size="sm" required>
+                        {[1, 2, 3, 4, 5].map((val) => (
+                          <option key={val} value={val}>
+                            {val}
+                          </option>
+                        ))}
+                      </Form.Select>
+                      <Form.Control
+                        name="review"
+                        placeholder="Write a short review..."
+                        className="mt-1"
+                        size="sm"
+                        required
+                      />
+                      <Button
+                        type="submit"
+                        variant="success"
+                        size="sm"
+                        className="mt-2"
+                      >
+                        Submit
+                      </Button>
+                    </Form.Group>
+                  </Form>
                 </div>
-                <Button variant="primary">Add to Cart</Button>
+                <Button variant="primary" className="mt-3">
+                  Add to Cart
+                </Button>
               </Card.Body>
             </Card>
           </Col>
