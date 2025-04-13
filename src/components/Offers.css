@@ -1,0 +1,36 @@
+.wheel-container {
+    width: 320px;
+    height: 320px;
+  }
+  
+  .wheel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: #f8f9fa;
+    transition: transform 3s ease-out;
+  }
+  
+  .segment {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0% 0%;
+    font-size: 12px;
+    text-align: left;
+    padding-left: 5px;
+    color: white;
+    background: #6f42c1;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+  
+  .pointer {
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 25px solid red;
+  }
+  
