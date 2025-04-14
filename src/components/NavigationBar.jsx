@@ -75,6 +75,11 @@ export default function NavigationBar() {
               >
                 {darkMode ? <FaSun size={20} /> : <FaMoon size={20} />}
               </Nav.Link>
+
+              {/* Link to Order Tracking */}
+              <Nav.Link as={Link} to="/order-tracking" className={darkMode ? "text-white" : "text-dark"}>
+                Order Tracking
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

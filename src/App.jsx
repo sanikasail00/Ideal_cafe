@@ -10,6 +10,7 @@ import LocationSelector from './components/LocationSelector';
 import CartPage from './components/CartPage';
 import Checkout from './components/Checkout';  // Import Checkout component
 import { CartProvider } from './components/contexts/CartContext';
+import OrderTracking from './components/OrderTracking'; // Import OrderTracking component
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/location" element={<LocationSelector />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<Checkout />} />  {/* Add Checkout route */}
+          <Route path="/order-tracking" element={<OrderTracking />} /> {/* Add Order Tracking route */}
         </Routes>
       </Router>
     </CartProvider>
