@@ -29,7 +29,9 @@ export default function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<Checkout />} /> 
           <Route path="/Sign In" element={<SignIn />} />
-          <Route path="/OrderTracking" element={<OrderTracking />} />
+
+          <Route path="/order-tracking" element={<OrderTracking />} />
+
         </Routes>
       </Router>
     </CartProvider>

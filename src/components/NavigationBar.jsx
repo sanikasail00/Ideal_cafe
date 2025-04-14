@@ -66,6 +66,9 @@ export default function NavigationBar() {
                   </span>
                 )}
               </Nav.Link>
+              <Nav.Link as={Link} to="/order-tracking" className={darkMode ? "text-white" : "text-dark"}>
+                Order Tracking
+              </Nav.Link>
 
               {/* Dark Mode Toggle */}
               <Nav.Link
