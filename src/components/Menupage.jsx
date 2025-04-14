@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import { Container, Row, Col, Card, Button, Form } from "react-bootstrap"
-import Belgian from "../assets/Menu/Belgian/Belgian.jpg"
-import Caramel from "../assets/Menu/Caramel/Caramel.jpg"
-import Mocha from "../assets/Menu/Mocha/Mocha.jpg"
-import Paneer from "../assets/Menu/Paneer/Paneer.jpg"
+import React, { useState, useContext } from "react";
+import { Container, Row, Col, Card, Button, Form } from "react-bootstrap";
+import Belgian from "../assets/Menu/Belgian/Belgian.jpg";
+import Caramel from "../assets/Menu/Caramel/Caramel.jpg";
+import Mocha from "../assets/Menu/Mocha/Mocha.jpg";
+import Paneer from "../assets/Menu/Paneer/Paneer.jpg";
+import { CartContext } from "./CartContext";
 
 const menuData = [
   {
     id: 1,
     name: "Belgian Bliss",
     category: "Ice Creams",
-     image: Belgian,
+    image: Belgian,
     description: "Decadent Belgian chocolate ice cream with dark fudge swirls.",
     price: 120,
     rating: 4.8,
@@ -32,7 +33,7 @@ const menuData = [
     id: 3,
     name: "Mocha Frappe",
     category: "Beverages",
-    image:Mocha,
+    image: Mocha,
     description: "Iced coffee blended with mocha and whipped cream.",
     price: 80,
     rating: 4.5,
@@ -43,7 +44,7 @@ const menuData = [
     id: 4,
     name: "Paneer Tikka Roll",
     category: "Snacks",
-    image:Paneer,
+    image: Paneer,
     description: "Spicy paneer tikka rolled in a soft tortilla wrap.",
     price: 90,
     rating: 4.6,
@@ -52,9 +53,10 @@ const menuData = [
   },
 ];
 
-export default function CafeMenu() {
+export default function Menupage() {
   const [filter, setFilter] = useState("All");
   const [sortBy, setSortBy] = useState("");
+  const { addToCart } = useContext(CartContext);
 
   const handleFilter = (e) => setFilter(e.target.value);
   const handleSort = (e) => setSortBy(e.target.value);
@@ -113,7 +115,9 @@ export default function CafeMenu() {
                     <strong>₹{item.price}</strong> | ⭐ {item.rating}
                   </Card.Text>
                 </div>
-                <Button variant="primary">Add to Cart</Button>
+                <Button variant="primary" onClick={() => addToCart(item)}>
+                  Add to Cart
+                </Button>
               </Card.Body>
             </Card>
           </Col>
@@ -122,3 +126,4 @@ export default function CafeMenu() {
     </Container>
   );
 }
+
