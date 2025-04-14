@@ -55,7 +55,7 @@ export default function NavigationBar() {
               <Nav.Link as={Link} to="/Offers" className={darkMode ? "text-white" : "text-dark"}>Offers</Nav.Link>
               <Nav.Link as={Link} to="/location" className={darkMode ? "text-white" : "text-dark"}>Locations</Nav.Link>
               <Nav.Link as={Link} to="/Contact Us" className={darkMode ? "text-white" : "text-dark"}>Contact Us</Nav.Link>
-              <Nav.Link className={darkMode ? "text-white" : "text-dark"}>Sign In</Nav.Link>
+              <Nav.Link as={Link} to="/Sign In"className={darkMode ? "text-white" : "text-dark"}>Sign In</Nav.Link>
 
               {/* Cart Icon with Item Count */}
               <Nav.Link as={Link} to="/cart" className={darkMode ? "text-white" : "text-dark"}>
