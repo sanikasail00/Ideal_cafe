@@ -9,6 +9,10 @@ import Vanilla from "../assets/Menu/Vanilla/vanilla.jpg";
 import CheesyNacho from "../assets/Menu/CheesyNacho/cheesynacho.jpg";
 import ChocoLava from "../assets/Menu/ChocoLava/chocolava.jpg";
 import ColdBrewKick from "../assets/Menu/ColdBrewKick/coldbrewkick.jpg";
+import BanoffeeBliss from "../assets/Menu/BanoffeeBliss/BanoffeeBliss.jpg";
+import ClassicLemonIcedTea from "../assets/Menu/ClassicLemonIcedTea/ClassicLemonIcedTea.jpg";
+import SpicyPotatoTwisters from "../assets/Menu/SpicyPotatoTwisters/SpicyPotatoTwisters.jpg";
+import TropicalTango from "../assets/Menu/TropicalTango/TropicalTango.jpg";
 
 const menuData = [
   {
@@ -98,6 +102,50 @@ const menuData = [
     price: 110,
     rating: 4.6,
     popularity: 88,
+    isNew: true,
+  },
+  {
+   id: 9,
+  name: "Banoffee Bliss",
+  category: "Desserts",
+  image: BanoffeeBliss,
+  description: "Rich banana and toffee dessert with a crunchy biscuit base.",
+  price: 120,
+  rating: 4.7,
+  popularity: 85,
+  isNew: true,
+  },
+  {
+    id: 10,
+  name: "Classic Lemon Iced Tea",
+  category: "Beverages",
+  image: ClassicLemonIcedTea,
+  description: "Refreshing iced tea with a splash of lemon and mint.",
+  price: 90,
+  rating: 4.3,
+  popularity: 77,
+  isNew: false,
+  },
+  {
+    id: 11,
+    name: "Spicy Potato Twisters",
+    category: "Snacks",
+    image: SpicyPotatoTwisters,
+    description: "Crispy spiral potatoes seasoned with fiery spices.",
+    price: 100,
+    rating: 4.5,
+    popularity: 82,
+    isNew: true,
+  },
+  {
+    id: 12,
+    name: "Tropical Tango",
+    category: "Beverages",
+    image: TropicalTango,
+    description: "A vibrant tropical fruit blend with mango, pineapple, and orange.",
+    price: 105,
+    rating: 4.4,
+    popularity: 80,
     isNew: true,
   },
 ];
