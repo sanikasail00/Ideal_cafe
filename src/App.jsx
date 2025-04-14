@@ -1,25 +1,28 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavigationBar from './components/NavigationBar';
 import Menupage from './components/Menupage';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from "./components/Home"
+import Home from './components/Home';
 import Contactus from './components/Contactus';
 import Offers from './components/Offers';
 import LocationSelector from './components/LocationSelector';
+import CartPage from './components/CartPage';
+import { CartProvider } from './components/contexts/CartContext';
 
 export default function App() {
   return (
-    <Router>
-      <NavigationBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Menu" element={<Menupage />} />
-        <Route path="/Contact Us" element={<Contactus/>}/>
-        <Route path="Offers" element={<Offers/>}/>
-        <Route path="/location" element={<LocationSelector />} />
-      </Routes>
-    </Router>
+    <CartProvider>
+      <Router>
+        <NavigationBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Menu" element={<Menupage />} />
+          <Route path="/Contact Us" element={<Contactus />} />
+          <Route path="/Offers" element={<Offers />} />
+          <Route path="/location" element={<LocationSelector />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
+      </Router>
+    </CartProvider>
   );
-
 }
-

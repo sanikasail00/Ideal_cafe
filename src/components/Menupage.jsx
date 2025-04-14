@@ -13,6 +13,7 @@ import BanoffeeBliss from "../assets/Menu/BanoffeeBliss/BanoffeeBliss.jpg";
 import ClassicLemonIcedTea from "../assets/Menu/ClassicLemonIcedTea/ClassicLemonIcedTea.jpg";
 import SpicyPotatoTwisters from "../assets/Menu/SpicyPotatoTwisters/SpicyPotatoTwisters.jpg";
 import TropicalTango from "../assets/Menu/TropicalTango/TropicalTango.jpg";
+import { useCart } from "./contexts/CartContext";
 
 const menuData = [
   {
@@ -105,26 +106,26 @@ const menuData = [
     isNew: true,
   },
   {
-   id: 9,
-  name: "Banoffee Bliss",
-  category: "Desserts",
-  image: BanoffeeBliss,
-  description: "Rich banana and toffee dessert with a crunchy biscuit base.",
-  price: 120,
-  rating: 4.7,
-  popularity: 85,
-  isNew: true,
+    id: 9,
+    name: "Banoffee Bliss",
+    category: "Desserts",
+    image: BanoffeeBliss,
+    description: "Rich banana and toffee dessert with a crunchy biscuit base.",
+    price: 120,
+    rating: 4.7,
+    popularity: 85,
+    isNew: true,
   },
   {
     id: 10,
-  name: "Classic Lemon Iced Tea",
-  category: "Beverages",
-  image: ClassicLemonIcedTea,
-  description: "Refreshing iced tea with a splash of lemon and mint.",
-  price: 90,
-  rating: 4.3,
-  popularity: 77,
-  isNew: false,
+    name: "Classic Lemon Iced Tea",
+    category: "Beverages",
+    image: ClassicLemonIcedTea,
+    description: "Refreshing iced tea with a splash of lemon and mint.",
+    price: 90,
+    rating: 4.3,
+    popularity: 77,
+    isNew: false,
   },
   {
     id: 11,
@@ -142,25 +143,25 @@ const menuData = [
     name: "Tropical Tango",
     category: "Beverages",
     image: TropicalTango,
-    description: "A vibrant tropical fruit blend with mango, pineapple, and orange.",
+    description:
+      "A vibrant tropical fruit blend with mango, pineapple, and orange.",
     price: 105,
     rating: 4.4,
     popularity: 80,
     isNew: true,
   },
 ];
-
 export default function CafeMenu() {
+  const { addToCart } = useCart();
   const [filter, setFilter] = useState("All");
   const [sortBy, setSortBy] = useState("");
   const [reviews, setReviews] = useState({});
-  const [userPreferences, setUserPreferences] = useState([]); // New state to track preferences
-  const [recommendedItems, setRecommendedItems] = useState([]); // State to hold recommended items
+  const [userPreferences, setUserPreferences] = useState([]);
+  const [recommendedItems, setRecommendedItems] = useState([]);
 
   const handleFilter = (e) => setFilter(e.target.value);
   const handleSort = (e) => setSortBy(e.target.value);
 
-  // Update recommended items based on user preferences
   useEffect(() => {
     if (userPreferences.length > 0) {
       const recommendations = menuData.filter((item) =>
@@ -178,7 +179,6 @@ export default function CafeMenu() {
   };
 
   const handlePreference = (category) => {
-    // Add the selected category to the preferences list
     setUserPreferences((prev) => [...new Set([...prev, category])]);
   };
 
@@ -241,7 +241,7 @@ export default function CafeMenu() {
                   <Card.Text>
                     <strong>₹{item.price}</strong>
                   </Card.Text>
-                  <Button variant="primary" className="mt-3">
+                  <Button variant="primary" onClick={() => addToCart(item)}>
                     Add to Cart
                   </Button>
                 </Card.Body>
@@ -267,6 +267,7 @@ export default function CafeMenu() {
         ))}
       </Row>
 
+      <h4 className="mt-4">All Menu Items</h4>
       <Row>
         {sortedMenu.map((item) => (
           <Col key={item.id} md={3} className="mb-4">
@@ -367,7 +368,14 @@ export default function CafeMenu() {
                     </Form.Group>
                   </Form>
                 </div>
-                <Button variant="primary" className="mt-3">
+                <Button
+                  variant="success"
+                  className="mt-3"
+                  onClick={() => {
+                    addToCart(item);
+                    alert(`${item.name} has been added to your cart!`);
+                  }}
+                >
                   Add to Cart
                 </Button>
               </Card.Body>
