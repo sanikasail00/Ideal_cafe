@@ -11,6 +11,7 @@ import CartPage from './components/CartPage';
 import Checkout from './components/Checkout';  // Import Checkout component
 import { CartProvider } from './components/contexts/CartContext';
 import SignIn from './components/SignIn';
+import OrderTracking from './components/OrderTracking';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<Checkout />} /> 
           <Route path="/Sign In" element={<SignIn />} />
+          <Route path="/order-tracking" element={<OrderTracking />} />
         </Routes>
       </Router>
     </CartProvider>
