@@ -1,32 +1,37 @@
+
+
+// export default Home;
 import React from "react";
 import { Carousel, Card, Container, Row, Col } from "react-bootstrap";
 import "../App.css";
 
 // ✅ Correctly Import Images
-import choco from "../assets/images/choco.jpg";
+import cafe1 from "../assets/images/cafe1.jpg";
 import gudbud from "../assets/images/gudbud.jpg";
 import mango from "../assets/images/mango.jpg";
 import munchoori from "../assets/images/munchoori.jpg";  // Correct path
-
 import icecream from "../assets/images/icecream.jpg";
-
-import cafe from "../assets/images/cafe.jpg";
-// import choclatedad from "../assets/images/choclatedad.jpg";
+import cafe3 from "../assets/images/cafe3.jpg";
+import cafe2 from "../assets/images/cafe2.jpg";
+import thiramisu from "../assets/images/thiramisu.jpg";
+// Custom component
 import IceCreamOfTheDay from './Icecreamofday';
-
-
 
 // Sample data for carousel, dishes, and testimonials
 const carouselImages = [
   { src: munchoori, caption: "Award-Winning Flavors" },
   { src: icecream, caption: "Delicious & Creamy" },
-  { src: cafe, caption: "Refreshing & Tasty" },
+  // { src: cafe, caption: "Refreshing & Tasty" },
+  { src: cafe3, caption: "Savor Moments Over Scoop" },
+
 ];
 
 const popularDishes = [
   { name: "Gadbad Ice Cream", img: gudbud, desc: "A delightful mix of flavors and textures!" },
-  { name: "Chocolate Fudge", img: choco, desc: "Rich and creamy chocolate delight!" },
-  { name: "Mango Delight", img: mango, desc: "Fresh mango ice cream with a smooth texture!" },
+  { name: "Tiramisu Ice Cream", img: thiramisu, desc: "A creamy fusion of coffee, cocoa, and mascarpone magic!" },
+
+  { name: "Icecream Thali", img: cafe2, desc: "Rich and creamy Icecream Thali!" },
+  // { name: "Mango Delight", img: mango, desc: "Fresh mango ice cream with a smooth texture!" },
 ];
 
 const testimonials = [
@@ -41,14 +46,28 @@ const Home = () => {
       <Carousel className="mt-5">
         {carouselImages.map((item, index) => (
           <Carousel.Item key={index}>
-            <img className="d-block w-100" src={item.src} alt={`Slide ${index}`} />
+            <img
+              className="d-block w-100"
+              src={item.src}
+              alt={`Slide ${index}`}
+              style={{
+                height: "400px",               // Fixed height
+                width: "auto",                 // Auto width to maintain aspect ratio
+                objectFit: "cover",            // Cover the space while maintaining aspect ratio
+                margin: "0 auto",              // Center the image horizontally
+              }}
+            />
             <Carousel.Caption>
               <h3>{item.caption}</h3>
             </Carousel.Caption>
           </Carousel.Item>
         ))}
       </Carousel>
-      <IceCreamOfTheDay/>
+
+      {/* Ice Cream of the Day Section */}
+      <IceCreamOfTheDay />
+
+      {/* Popular Dishes Section */}
       <Container className="mt-5">
         <h2 className="text-center mb-4">Popular Dishes</h2>
         <Row>
@@ -66,7 +85,7 @@ const Home = () => {
         </Row>
       </Container>
 
-
+      {/* Testimonials Section */}
       <Container className="mt-5 bg-light p-4">
         <h2 className="text-center mb-4">What Our Customers Say</h2>
         <Row>
@@ -84,18 +103,40 @@ const Home = () => {
         </Row>
       </Container>
 
-      
+      {/* Exclusive Offers Section */}
       <Container className="mt-5 text-center bg-warning p-4">
         <h2>Exclusive Offers</h2>
         <p>Happy Hours: Buy 1 Get 1 Free (4 PM - 6 PM)!</p>
         <p>Seasonal Specials Available Now!</p>
       </Container>
+
+      {/* Footer Section */}
+      <footer className="bg-dark text-white text-center py-4 mt-5">
+        <Container>
+          <Row>
+            <Col>
+              <h5>About Us</h5>
+              <p>Your favorite place for ice cream and desserts. We offer a wide variety of delicious flavors that everyone loves.</p>
+            </Col>
+            <Col>
+              <h5>Follow Us</h5>
+              <p>
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-white">Facebook</a><br />
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-white">Instagram</a><br />
+                <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="text-white">Twitter</a>
+              </p>
+            </Col>
+            <Col>
+              <h5>Contact Us</h5>
+              <p>Email: info@icecreamparadise.com</p>
+              <p>Phone: +1 234 567 890</p>
+            </Col>
+          </Row>
+        </Container>
+        <p className="mt-4">© 2025 Ice Cream Paradise. All rights reserved.</p>
+      </footer>
     </Container>
   );
 };
 
 export default Home;
-
-
-
-

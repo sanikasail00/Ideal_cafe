@@ -1,37 +1,31 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/Home"; // adjust the path if needed
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NavigationBar from './components/NavigationBar';
+import Menupage from './components/Menupage';
+import Home from './components/Home';
+import Contactus from './components/Contactus';
+import Offers from './components/Offers';
+import LocationSelector from './components/LocationSelector';
+import CartPage from './components/CartPage';
+import Checkout from './components/Checkout';  // Import Checkout component
+import { CartProvider } from './components/contexts/CartContext';
 
-import Menupage from "./components/Menupage";
-import Contactus from "./components/Contactus";
-import Cart from "./components/Cart";
-import NavigationBar from "./components/NavigationBar";
-import { CartProvider } from "./components/CartContext";
-import OffersPage from "./components/OffersPage";
-import SignIn from "./components/SignIn";
-
-function App() {
+export default function App() {
   return (
     <CartProvider>
       <Router>
         <NavigationBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/offers" component={OffersPage} />
           <Route path="/menu" element={<Menupage />} />
-          <Route path="/contact" element={<Contactus />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/Contact Us" element={<Contactus />} />
+          <Route path="/offers" element={<Offers />} />
+          <Route path="/location" element={<LocationSelector />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<Checkout />} />  {/* Add Checkout route */}
         </Routes>
       </Router>
     </CartProvider>
   );
 }
-
-export default App;
-
-
-
-
-
-

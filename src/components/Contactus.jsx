@@ -1,7 +1,21 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 
 const ContactUs = () => {
+  const [alertMessage, setAlertMessage] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent the form from reloading the page
+    setAlertMessage('Thank you for reaching out! We will get back to you soon.');
+
+    // Optionally, clear the form after submission
+    e.target.reset();
+    
+    // Hide the alert after 5 seconds
+    setTimeout(() => {
+      setAlertMessage('');
+    }, 5000);
+  };
+
   return (
     <div>
       <header className="bg-dark text-white text-center py-4">
@@ -11,7 +25,15 @@ const ContactUs = () => {
 
       <div className="container mt-5 mb-5">
         <h2 className="text-center mb-4">Contact Us</h2>
-        <form>
+
+        {/* Alert Message */}
+        {alertMessage && (
+          <div className="alert alert-success text-center mb-4">
+            {alertMessage}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">Name</label>
             <input type="text" className="form-control" id="name" required />
