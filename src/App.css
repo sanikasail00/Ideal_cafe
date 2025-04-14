@@ -131,3 +131,18 @@ body.dark-mode .form-control::placeholder {
 strong {
   color: #000;
 }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  flex: 1;
+}
