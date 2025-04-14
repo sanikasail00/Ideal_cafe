@@ -11,7 +11,7 @@ import gudbud from "../assets/images/gudbud.jpg";
 import mango from "../assets/images/mango.jpg";
 import munchoori from "../assets/images/munchoori.jpg";  // Correct path
 import icecream from "../assets/images/icecream.jpg";
-import cafe from "../assets/images/cafe.jpg";
+import cafe3 from "../assets/images/cafe3.jpg";
 import cafe2 from "../assets/images/cafe2.jpg";
 import thiramisu from "../assets/images/thiramisu.jpg";
 // Custom component
@@ -22,7 +22,7 @@ const carouselImages = [
   { src: munchoori, caption: "Award-Winning Flavors" },
   { src: icecream, caption: "Delicious & Creamy" },
   // { src: cafe, caption: "Refreshing & Tasty" },
-  { src: cafe2, caption: "Savor Moments Over Scoop" },
+  { src: cafe3, caption: "Savor Moments Over Scoop" },
 
 ];
 
