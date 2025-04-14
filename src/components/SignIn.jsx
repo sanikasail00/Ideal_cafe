@@ -1,58 +1,23 @@
-// components/SignIn.jsx
-import React, { useState } from "react";
-import { Container, Form, Button, Alert } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
 
-export default function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const history = useHistory();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would typically handle authentication
-    if (email === "" || password === "") {
-      setError("Please fill in all fields.");
-      return;
-    }
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import NavigationBar from "./components/NavigationBar";
+import SignIn from "./components/SignIn";
+import Home from "./components/Home"; // Assuming you have a Home component
+// Import other components as needed
 
-    // Simulate a successful sign-in
-    alert("Sign In Successful!");
-    history.push("/"); // Redirect to home page after successful sign-in
-  };
-
+function App() {
   return (
-    <Container style={{ maxWidth: "400px", marginTop: "50px" }}>
-      <h2 className="text-center">Sign In</h2>
-      {error && <Alert variant="danger">{error}</Alert>}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </Form.Group>
-
-        <Button variant="primary" type="submit" style={{ width: "100%", marginTop: "20px" }}>
-          Sign In
-        </Button>
-      </Form>
-    </Container>
+    <Router>
+      <NavigationBar />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/signin" component={SignIn} />
+        {/* Add other routes here */}
+      </Switch>
+    </Router>
   );
 }
+
+export default App;
