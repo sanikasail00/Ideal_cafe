@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from "./components/Home"
 import Contactus from './components/Contactus';
 import Offers from './components/Offers';
+import LocationSelector from './components/LocationSelector';
+
 export default function App() {
   return (
     <Router>
@@ -14,6 +16,7 @@ export default function App() {
         <Route path="/Menu" element={<Menupage />} />
         <Route path="/Contact Us" element={<Contactus/>}/>
         <Route path="Offers" element={<Offers/>}/>
+        <Route path="/location" element={<LocationSelector />} />
       </Routes>
     </Router>
   );
