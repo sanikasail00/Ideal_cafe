@@ -14,6 +14,7 @@ import ClassicLemonIcedTea from "../assets/Menu/ClassicLemonIcedTea/ClassicLemon
 import SpicyPotatoTwisters from "../assets/Menu/SpicyPotatoTwisters/SpicyPotatoTwisters.jpg";
 import TropicalTango from "../assets/Menu/TropicalTango/TropicalTango.jpg";
 import { useCart } from "./contexts/CartContext";
+import "./Menupage.css"
 
 const menuData = [
   {

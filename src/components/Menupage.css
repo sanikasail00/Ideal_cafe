@@ -1,0 +1,138 @@
+/* General Styles */
+body {
+    background-color: #fff8f0;
+}
+
+h2, h4 {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #3b1f14; /* Deeper chocolate */
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #5c4033;
+}
+
+.card-body {
+    background-color: #fffdfb;
+    padding: 1rem;
+}
+
+.card-img-top,
+.card-img {
+    border-radius: 10px 10px 0 0;
+    border: 2px solid #d9c7b2;
+}
+
+.card {
+    background-color: #fff;
+    border: 2px solid #e6d3c7;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(78, 46, 30, 0.2); /* chocolate shadow */
+}
+
+button,
+.btn {
+    font-weight: 500;
+    border-radius: 20px;
+    background-color: #7b3f00;
+    color: #fff;
+    border: none;
+}
+
+button:hover,
+.btn:hover {
+    background-color: #5c2e00;
+}
+
+.form-select {
+    border-radius: 10px;
+    border: 2px solid #d9c7b2;
+    background-color: #fff;
+    color: #4e2e1e;
+}
+
+.recommended-title {
+    color: #a0522d;
+    margin-top: 1.5rem;
+}
+
+.preference-button {
+    background-color: chocolate;
+    color: white;
+    border: 1px solid white;
+    margin: 5px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.preference-button:hover {
+    background-color: #7b3f00;
+    color: #fff;
+}
+
+.no-recommendations {
+    color: #a19891;
+    font-style: italic;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+/* Dark Mode Styles */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1e1e1e;
+        color: #fff8f0; 
+    }
+
+    h2, h4 {
+        color: #fff; 
+    }
+
+    .card {
+        background-color: #333; 
+        border: 2px solid #555; 
+    }
+
+    .card-title {
+        color: #fff;
+    }
+
+    .card-text {
+        color: #bbb;
+    }
+
+    .form-select {
+        background-color: #444;
+        color: #fff;
+        border-color: #666;
+    }
+
+    .preference-button {
+        background-color: #7b3f00;
+        color: white;
+    }
+
+    /* Make 'No recommendations available' text white in dark mode */
+    .no-recommendations {
+        color: white; /* Changes the message text color to white */
+        font-style: italic;
+        text-align: center;
+        font-size: 1rem;
+        margin-top: 20px;
+    }
+}
