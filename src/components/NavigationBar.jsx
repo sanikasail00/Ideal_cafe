@@ -8,10 +8,11 @@ import {
 import { Link } from "react-router-dom";
 import { FaShoppingCart, FaMoon, FaSun } from "react-icons/fa";
 import logo from "../assets/logo/ideal.png";
+import { useCart } from "../components/contexts/CartContext"; // Import the useCart hook
 
 export default function NavigationBar() {
   const [darkMode, setDarkMode] = useState(false);
-
+  const { cartItems } = useCart();  // Get cartItems from CartContext
 
   useEffect(() => {
     if (darkMode) {
@@ -20,6 +21,9 @@ export default function NavigationBar() {
       document.body.classList.remove("dark-mode");
     }
   }, [darkMode]);
+
+  // Calculate total number of items in the cart
+  const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <div>
@@ -49,14 +53,21 @@ export default function NavigationBar() {
               <Nav.Link as={Link} to="/" className={darkMode ? "text-white" : "text-dark"}>Home</Nav.Link>
               <Nav.Link as={Link} to="/menu" className={darkMode ? "text-white" : "text-dark"}>Menu</Nav.Link>
               <Nav.Link as={Link} to="/Offers" className={darkMode ? "text-white" : "text-dark"}>Offers</Nav.Link>
-              <Nav.Link as={Link} to="/location" className={darkMode ? "text-white" : "text-dark"}>
-  Locations
-</Nav.Link>
+              <Nav.Link as={Link} to="/location" className={darkMode ? "text-white" : "text-dark"}>Locations</Nav.Link>
               <Nav.Link as={Link} to="/Contact Us" className={darkMode ? "text-white" : "text-dark"}>Contact Us</Nav.Link>
               <Nav.Link className={darkMode ? "text-white" : "text-dark"}>Sign In</Nav.Link>
+
+              {/* Cart Icon with Item Count */}
               <Nav.Link as={Link} to="/cart" className={darkMode ? "text-white" : "text-dark"}>
                 <FaShoppingCart size={20} />
+                {totalItems > 0 && (
+                  <span className="badge bg-warning text-dark ms-1">
+                    {totalItems}
+                  </span>
+                )}
               </Nav.Link>
+
+              {/* Dark Mode Toggle */}
               <Nav.Link
                 onClick={() => setDarkMode(!darkMode)}
                 className={darkMode ? "text-white" : "text-dark"}
@@ -71,4 +82,3 @@ export default function NavigationBar() {
     </div>
   );
 }
-

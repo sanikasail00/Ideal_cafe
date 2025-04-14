@@ -329,7 +329,6 @@ export default function CafeMenu() {
                       <strong>Total Rating:</strong> ⭐ {item.rating}
                     </Card.Text>
                   )}
-
                   <Form
                     className="mt-2"
                     onSubmit={(e) => {
@@ -338,6 +337,11 @@ export default function CafeMenu() {
                       const text = e.target.review.value;
                       handleReviewSubmit(item.id, rating, text);
                       e.target.reset();
+
+                      // Show alert message after submitting review
+                      alert(
+                        "Thank you for your review! It has been submitted successfully."
+                      );
                     }}
                   >
                     <Form.Group className="mb-2">
