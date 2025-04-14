@@ -12,6 +12,7 @@ import Checkout from './components/Checkout';  // Import Checkout component
 import { CartProvider } from './components/contexts/CartContext';
 
 import SignIn from './components/SignIn';
+import OrderTracking from './components/OrderTracking';
 
 
 export default function App() {
@@ -28,7 +29,7 @@ export default function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<Checkout />} /> 
           <Route path="/Sign In" element={<SignIn />} />
-
+          <Route path="/OrderTracking" element={<OrderTracking />} />
         </Routes>
       </Router>
     </CartProvider>
