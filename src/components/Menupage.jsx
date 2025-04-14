@@ -331,41 +331,34 @@ export default function CafeMenu() {
                   )}
 
                   <Form
+                    className="mt-2"
                     onSubmit={(e) => {
                       e.preventDefault();
-                      const rating = parseInt(e.target.rating.value);
+                      const rating = parseFloat(e.target.rating.value);
                       const text = e.target.review.value;
                       handleReviewSubmit(item.id, rating, text);
                       e.target.reset();
                     }}
                   >
-                    <Form.Group className="mt-2">
-                      <Form.Label style={{ fontSize: "0.9em" }}>
-                        Rate this:
-                      </Form.Label>
-                      <Form.Select name="rating" size="sm" required>
-                        {[1, 2, 3, 4, 5].map((val) => (
-                          <option key={val} value={val}>
-                            {val}
-                          </option>
-                        ))}
-                      </Form.Select>
+                    <Form.Group className="mb-2">
                       <Form.Control
                         name="review"
-                        placeholder="Write a short review..."
-                        className="mt-1"
-                        size="sm"
-                        required
+                        placeholder="Write a review..."
                       />
-                      <Button
-                        type="submit"
-                        variant="success"
-                        size="sm"
-                        className="mt-2"
-                      >
-                        Submit
-                      </Button>
                     </Form.Group>
+                    <Form.Group className="mb-2">
+                      <Form.Select name="rating">
+                        <option value="">Rate</option>
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Good</option>
+                        <option value="3">3 - Average</option>
+                        <option value="2">2 - Poor</option>
+                        <option value="1">1 - Bad</option>
+                      </Form.Select>
+                    </Form.Group>
+                    <Button type="submit" size="sm" variant="success">
+                      Submit Review
+                    </Button>
                   </Form>
                 </div>
                 <Button

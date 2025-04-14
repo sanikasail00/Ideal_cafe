@@ -1,15 +1,24 @@
 import React, { createContext, useState, useContext } from 'react';
 
-// Create a context to provide cart state globally
 const CartContext = createContext();
 
-// Create a provider component to wrap the app and provide cart state
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]); // Initialize cartItems state
+  const [cartItems, setCartItems] = useState([]);
 
-  // Function to add an item to the cart
+  // Function to add an item to the cart or increase quantity if it already exists
   const addToCart = (item) => {
-    setCartItems((prevItems) => [...prevItems, item]);
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find(i => i.id === item.id);
+      if (existingItem) {
+        return prevItems.map(i =>
+          i.id === item.id
+            ? { ...i, quantity: i.quantity + 1 }
+            : i
+        );
+      } else {
+        return [...prevItems, { ...item, quantity: 1 }];
+      }
+    });
   };
 
   // Function to remove an item from the cart
@@ -22,12 +31,22 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
   };
 
+  // Function to update quantity (+ or -)
+  const updateQuantity = (itemId, delta) => {
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === itemId
+          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
+          : item
+      )
+    );
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart, updateQuantity }}>
       {children}
     </CartContext.Provider>
   );
 };
 
-// Custom hook to use the cart context in components
 export const useCart = () => useContext(CartContext);
